@@ -1,6 +1,5 @@
 FROM composer:2.4 as build
 COPY . /app/
-RUN composer install --prefer-dist --no-dev --optimize-autoloader --no-interaction
 
 FROM php:8.1-apache-buster as dev
 
