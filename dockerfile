@@ -15,9 +15,6 @@ COPY . /var/www/html/
 COPY --from=build /usr/bin/composer /usr/bin/composer
 RUN composer install --prefer-dist --no-interaction
 
-COPY docker/apache/000-default.conf /etc/apache2/sites-available/000-default.conf
-
-
 RUN php artisan config:cache && \
     php artisan route:cache && \
     chmod 777 -R /var/www/html/storage/ && \
@@ -31,10 +28,9 @@ ENV APP_DEBUG=false
 
 RUN docker-php-ext-configure opcache --enable-opcache && \
     docker-php-ext-install pdo pdo_mysql
-COPY docker/php/conf.d/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
+
 
 COPY --from=build /app /var/www/html
-COPY docker/apache/000-default.conf /etc/apache2/sites-available/000-default.conf
 
 RUN php artisan config:cache && \
     php artisan route:cache && \
