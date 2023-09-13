@@ -18,7 +18,9 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    
     steps:
+    - run: composer build 
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: docker-compose build --no-cache --force-rm 
