@@ -21,7 +21,7 @@ jobs:
     
     steps:
     - name: build composer
-      run: composer install --no-dev --no-interaction -o
+      run: docker run --rm --interactive --tty --volume pwd:/dockerapp composer install
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: docker-compose build --no-cache --force-rm 
