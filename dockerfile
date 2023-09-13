@@ -9,6 +9,7 @@ ENV COMPOSER_ALLOW_SUPERUSER=1
 
 RUN apt-get update && apt-get install -y zip
 RUN docker-php-ext-install pdo pdo_mysql
+RUN composer install
 
 COPY . /var/www/html/
 COPY --from=build /usr/bin/composer /usr/bin/composer
