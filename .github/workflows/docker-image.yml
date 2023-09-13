@@ -20,7 +20,7 @@ jobs:
 
     
     steps:
-    - run: composer install
+    - run: composer install --no-dev --no-interaction -o
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: docker-compose build --no-cache --force-rm 
