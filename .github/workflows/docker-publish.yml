@@ -9,11 +9,9 @@ on:
   schedule:
     - cron: '35 7 * * *'
   push:
-    branches: [ "main" ]
-    # Publish semver tags as releases.
-    tags: [ 'v*.*.*' ]
+  branches: [ "dev", "main" ]
   pull_request:
-    branches: [ "main" ]
+   branches: [ "dev", "main" ]
 
 env:
   # Use docker.io for Docker Hub if empty
@@ -58,8 +56,8 @@ jobs:
         uses: docker/login-action@343f7c4344506bcbf9b4de18042ae17996df046d # v3.0.0
         with:
           registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          username: ${{ secrets.PS206169 }}
+          password: ${{ secrets.Binnen@2001 }}
 
       # Extract metadata (tags, labels) for Docker
       # https://github.com/docker/metadata-action
