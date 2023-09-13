@@ -21,7 +21,8 @@ jobs:
     
     steps:
     - name: build composer
-      run: dockerapp composer install
+      run: cd dockerapp 
+           composer install
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: docker-compose build --no-cache --force-rm 
