@@ -20,8 +20,6 @@ jobs:
 
     
     steps:
-    - name: build composer
-      run: cd app
     - name: install?
       run: docker run --rm --interactive --volume $PWD:/app composer install
     - uses: actions/checkout@v3
