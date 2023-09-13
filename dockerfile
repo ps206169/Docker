@@ -1,5 +1,6 @@
 FROM composer:2.4 as build
 COPY . /app/
+FROM php:8.1-cli
 
 FROM php:8.1-apache-buster as dev
 RUN apt-get update -y && apt-get install -y libmcrypt-dev
@@ -34,6 +35,10 @@ ENV APP_DEBUG=false
 RUN docker-php-ext-configure opcache --enable-opcache && \
     docker-php-ext-install pdo pdo_mysql
 
+
+COPY --from=build /app /var/www/html
+EXPOSE 8000
+CMD php artisan serve --host=0.0.0.0 --port=8000
 
 COPY --from=build /app /var/www/html
 EXPOSE 8000
